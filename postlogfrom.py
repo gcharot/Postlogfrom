@@ -77,7 +77,7 @@ for line in log:
 	qid_match_to = to_match.search(line)			# Match a to= line
 
 	if qid_match_to:
-		if qid_match_to.group(2) in qid_list:		# If within a to=line check if the is QID is in out QID set list
+		if qid_match_to.group(2) in qid_list:		# If within a to= line check if the is QID is in our QID set list
 			print qid_match_to.group(1), ",", qid_match_to.group(2), ",", qid_match_to.group(3), ",", qid_match_to.group(5), ",", qid_match_to.group(6)		# Print result : Date, qid, to, status, reason
 			nb_mail += 1							# Increment number of mail(s) found
 
