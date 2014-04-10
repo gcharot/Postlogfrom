@@ -45,31 +45,41 @@ from_match = re.compile(r'qmgr\[\d+\]: ([A-Z0-9]+): from=<([\w\-\.]+@(\w[\w\-]+\
 # Match postfix log to= line
 to_match = re.compile(r'^(\w{3}[^a-zA-Z]+) .+\/smtp\[\d+\]: ([A-Z0-9]+): to=<([\w\-\.]+@(\w[\w\-]+\.)+[\w\-]+)>.*status=(\w+) \((.+)\)')
 
+
+# Check email input validity
 if not email_match.match(from_email):
 	print "ERROR :", from_email, " : Invalid email address format."
 	usage(sys.argv[0])
+
+# Check / open postfix logfile
+try:
+	log = open(maillog, "r")
+except IOError as detail:
+  		print "ERROR : Something went wrong while opening ", maillog, ":", detail
+  		exit(2)
+
 
 
 print "Looking for mail sent by ", from_email
 print "-----BEGIN CSV-----"
 print "Date, qid, to, status, reason"
 
-with open(maillog) as log:
-    for line in log:
-        qid_match_from = from_match.search(line)		# Match a from= line 
 
-        if qid_match_from:
-        	if qid_match_from.group(2) == from_email:	# If within a from=line check if it is from the user inputed mail
-        		qid_list.add(qid_match_from.group(1))	# Add it in the set list so we can search the related to= line
+# Parse logfile
+for line in log:
+	qid_match_from = from_match.search(line)		# Match a from= line 
 
-        	continue									# go to next log's line as if it is a "from" line it is not a "to" line. 
+	if qid_match_from:
+		if qid_match_from.group(2) == from_email:	# If within a from=line check if it is from the user inputed mail
+			qid_list.add(qid_match_from.group(1))	# Add it in the set list so we can search the related to= line
+		continue									# go to next log's line as if it is a "from" line it is not a "to" line. 
 
-        qid_match_to = to_match.search(line)			# Match a to= line
+	qid_match_to = to_match.search(line)			# Match a to= line
 
-        if qid_match_to:
-        	if qid_match_to.group(2) in qid_list:		# If within a to=line check if the is QID is in out QID set list
-        		print qid_match_to.group(1), ",", qid_match_to.group(2), ",", qid_match_to.group(3), ",", qid_match_to.group(5), ",", qid_match_to.group(6)		# Print result : Date, qid, to, status, reason
-        		nb_mail += 1							# Increment number of mail(s) found
+	if qid_match_to:
+		if qid_match_to.group(2) in qid_list:		# If within a to=line check if the is QID is in out QID set list
+			print qid_match_to.group(1), ",", qid_match_to.group(2), ",", qid_match_to.group(3), ",", qid_match_to.group(5), ",", qid_match_to.group(6)		# Print result : Date, qid, to, status, reason
+			nb_mail += 1							# Increment number of mail(s) found
 
 
 
