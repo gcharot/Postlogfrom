@@ -18,6 +18,7 @@
 
 import re
 import sys
+import time
 
 def usage(my_name):
 	print "\nUsage : ", my_name, " user@domain.tld"
@@ -60,10 +61,12 @@ except IOError as detail:
 
 
 
-print "Looking for mail sent by ", from_email
+print "Looking for mail sent by", from_email
 print "-----BEGIN CSV-----"
 print "Date, qid, to, status, reason"
 
+
+start_time = time.time()
 
 # Parse logfile
 for line in log:
@@ -87,4 +90,4 @@ log.close()
 
 print "-----END CSV-----"
 
-print "Found ", nb_mail, " mail(s) sent from address ", from_email
+print "Found", nb_mail, "mail(s) sent from address", from_email, "in", round(time.time() - start_time, 3), "seconds"
