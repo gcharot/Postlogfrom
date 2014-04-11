@@ -29,7 +29,7 @@ def usage(my_name):
 try:
 	from_email = sys.argv[1]
 except:
-	print "ERROR : Program requires an email address as argument" # TODO check if email
+	print "ERROR : Program requires an email address as argument"
 	usage(sys.argv[0])
 
 
@@ -49,7 +49,7 @@ to_match = re.compile(r'^(\w{3}[^a-zA-Z]+) .+\/smtp\[\d+\]: ([A-Z0-9]+): to=<([\
 
 # Check email input validity
 if not email_match.match(from_email):
-	print "ERROR :", from_email, " : Invalid email address format."
+	print "ERROR :", from_email, ": Invalid email address format."
 	usage(sys.argv[0])
 
 # Check / open postfix logfile
@@ -73,9 +73,9 @@ for line in log:
 	qid_match_from = from_match.search(line)		# Match a from= line 
 
 	if qid_match_from:
-		if qid_match_from.group(2) == from_email:	# If within a from=line check if it is from the user inputed mail
-			qid_list.add(qid_match_from.group(1))	# Add it in the set list so we can search the related to= line
-		continue									# go to next log's line as if it is a "from" line it is not a "to" line. 
+		if qid_match_from.group(2) == from_email:	# If within a from= line check if it is from the user inputed mail
+			qid_list.add(qid_match_from.group(1))	# Add it in the set list so we can search the related to= line later on.
+		continue									# go to next log's line as if it is a "from=" line it is not a "to=" line. 
 
 	qid_match_to = to_match.search(line)			# Match a to= line
 
