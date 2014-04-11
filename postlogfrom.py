@@ -21,8 +21,8 @@ import sys
 import time
 
 def usage(my_name):
-	print "\nUsage : ", my_name, " user@domain.tld"
-	print "List all mails sent from address user@domain.tld"
+	print "\nUsage : ", my_name, " sender@domain.tld"
+	print "List all mails sent from address sender@domain.tld"
 	exit(1)
 
 
