@@ -14,13 +14,14 @@ Apr 11 14:48:48 mailserver postfix/smtp[27121]: 94F3B60053: to=<recipient@domain
 ==> Mail removed from queue
 Apr 11 15:48:48 mailserver postfix/qmgr[11877]: 94F3B60053: removed
 
-The only common variable is the postfix QID
+The only common variable is the postfix QID.
 
 If you want to know which mails have been sent by sender@domain.tld, you will need to get all QIDs matching sender@domain.tld then for each QID find the corresponding "to=" line.
 
 postlogfrom does this boring job for you.
 
-######################################################################################
+USAGE
+------
 
 Usage :  postlogfrom.py  sender@domain.tld
 List all mails sent from address sender@domain.tld
