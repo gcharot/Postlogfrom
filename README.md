@@ -11,20 +11,16 @@ Postfix logs are, by default, splited by events which means is it quite difficul
 
 Apr 11 14:48:47 mailserver postfix/smtpd[18935]: 94F3B60053: client=client.domain.tld[x.x.x.x]
 
-==> sender@domain.tld wants to send an email
-
+* sender@domain.tld wants to send an email  
 Apr 11 14:48:47 mailserver postfix/qmgr[11877]: 94F3B60053: from=<sender@domain.tld>, size=214625, nrcpt=3 (queue active)
 
  ___ Additional logs : DKIM / Rewrite / ETC ___
 
-==> sender@domain.tld has sent an email to recipient@domain.tld
-
+* sender@domain.tld has sent an email to recipient@domain.tld  
 Apr 11 14:48:48 mailserver postfix/smtp[27121]: 94F3B60053: to=<recipient@domain.tld>, relay=relay.domain.tld[x.x.x.x]:25, delay=2, delays=0.24/0/0.22/1.6, dsn=2.0.0, status=sent (250 server message OK)
 
-==> Mail removed from queue
-
+* Mail removed from queue  
 Apr 11 15:48:48 mailserver postfix/qmgr[11877]: 94F3B60053: removed
-
 
 The only common variable is the postfix QID.
 
