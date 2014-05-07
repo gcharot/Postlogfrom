@@ -1,3 +1,6 @@
+POSTLOGFROM
+============
+
 postlogfrom - List all mails sent from a particular address
 
 postlogfrom is a python program that print all mails sent from a particular sender address.
