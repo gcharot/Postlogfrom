@@ -35,8 +35,7 @@ postlogfrom does this boring job for you.
 USAGE
 ------
 
-Usage :  postlogfrom.py  sender@domain.tld
-
+Usage :  postlogfrom.py  sender@domain.tld  
 List all mails sent from address sender@domain.tld
 
 
