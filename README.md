@@ -41,7 +41,7 @@ Output is CSV formatted so you can easily import the results in a spreadsheet : 
 Example : 
 ---------
 
-# postlogfrom.py  sender@domain.tld
+postlogfrom.py  sender@domain.tld
 Looking for mail sent by sender@domain.tld
 -----BEGIN CSV-----
 Date, qid, to, status, reason
