@@ -27,10 +27,12 @@ USAGE
 ------
 
 Usage :  postlogfrom.py  sender@domain.tld
+
 List all mails sent from address sender@domain.tld
 
 
 Requirements : 
+--------------
 - Python 2.6
 - Postfix logs in /var/log/maillog. If not in standard path, edit the program and modify the "maillog" variable.
 - Postfix does NOT need to be installed on the machine
