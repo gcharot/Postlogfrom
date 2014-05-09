@@ -9,7 +9,6 @@ Postfix logs are, by default, splited by events which means is it quite difficul
 Below some postfix logs for a mail sent from address sender@domain.tld to recipient@domain.tld will look like :
 
 * SMTP client connection
-
 Apr 11 14:48:47 mailserver postfix/smtpd[18935]: 94F3B60053: client=client.domain.tld[x.x.x.x]
 
 * sender@domain.tld wants to send an email  

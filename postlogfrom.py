@@ -57,7 +57,7 @@ try:
 	log = open(maillog, "r")
 except IOError as detail:
   		print "ERROR : Something went wrong while opening ", maillog, ":", detail
-  		exit(2)
+  		sys.exit(2)
 
 
 
