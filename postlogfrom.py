@@ -20,8 +20,8 @@ import re
 import sys
 import time
 
-def usage(my_name):
-	print "\nUsage : ", my_name, " sender@domain.tld"
+def usage():
+	print "\nUsage : ", sys.argv[0], " sender@domain.tld"
 	print "List all mails sent from address sender@domain.tld"
 	exit(1)
 
@@ -30,7 +30,7 @@ try:
 	from_email = sys.argv[1]
 except:
 	print "ERROR : Program requires an email address as argument"
-	usage(sys.argv[0])
+	usage()
 
 
 maillog="/var/log/maillog"	# Postfix maillog path
@@ -50,7 +50,7 @@ to_match = re.compile(r'^(\w{3}[^a-zA-Z]+) .+\/smtp\[\d+\]: ([A-Z0-9]+): to=<([\
 # Check email input validity
 if not email_match.match(from_email):
 	print "ERROR :", from_email, ": Invalid email address format."
-	usage(sys.argv[0])
+	usage()
 
 # Check / open postfix logfile
 try:
